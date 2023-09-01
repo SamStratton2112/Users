@@ -63,9 +63,10 @@ def show_user_details(user_id):
     user = User.query.get_or_404(user_id)
     return render_template('details.html', user=user)
     
-@app.route('/users/delete/<int:user_id>', methods=['DELETE'])
+@app.route('/users/delete/<int:user_id>', methods=['POST'])
 def delete_user(user_id):
-    user = User.query.filter_by(id = user_id).delete()
+    user = User.query.get_or_404(user_id)
+    db.session.delete(user)
     db.session.commit()
     redirect ('/users')
 
