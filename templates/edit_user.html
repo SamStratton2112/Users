@@ -1,0 +1,20 @@
+
+{% extends 'base.html' %}
+{% block page_name %}Edit User{% endblock %}
+{% block content %}
+<h1>Edit a User</h1>
+<form action="/users" method="POST">
+       <input type="text" name="first_name" placeholder="First Name">
+       <br>
+       <input type="text" name="last_name" placeholder="Last Name">
+       <br>
+       <input type="url" name="profile_url" placeholder="Profile Picture URL">
+       <br>
+       <button>Save</button>
+</form>
+<button><a href="f`/users/{user.id}/details`">Cancel</a></button>
+
+
+
+
+{% endblock %}
