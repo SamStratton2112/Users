@@ -46,8 +46,8 @@ def edit_user(user_id):
     user = User.query.get_or_404(user_id)
     return render_template('edit_user.html', user=user)
 
-@app.route('/users/new', methods=['POST'])
-def add_edited_user():
+@app.route('/users/edit/<int:user_id>', methods=['POST'])
+def add_edited_user(user_id):
     """send add edited user post request to db and redirect to home page"""
     user = User.query.get_or_404(user_id)
     user.first_name = request.form['first_name']
@@ -68,5 +68,5 @@ def delete_user(user_id):
     user = User.query.get_or_404(user_id)
     db.session.delete(user)
     db.session.commit()
-    redirect ('/users')
+    return redirect ('/users')
 

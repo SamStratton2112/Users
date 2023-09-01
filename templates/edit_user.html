@@ -3,16 +3,17 @@
 {% block page_name %}Edit User{% endblock %}
 {% block content %}
 <h1>Edit a User</h1>
-<form action="/users/new" method="POST">
-       <input type="text" name="first_name" placeholder="First Name">
+<form action="/users/edit/<int:user_id>" method="POST">
+       <input type="text" name="first_name" value="{{user.first_name}}">
        <br>
-       <input type="text" name="last_name" placeholder="Last Name">
+       <input type="text" name="last_name" value="{{user.last_name}}">
        <br>
-       <input type="url" name="profile_pic" placeholder="Profile Picture URL">
+       <input type="url" name="profile_pic" value="{{user.profile_pic}}">
        <br>
+       <button><a href="/users/details/{{user.id}}">Cancel</a></button>
        <button>Save</button>
 </form>
-<button><a href="/users/details/{{user.id}}">Cancel</a></button>
+
 
 
 
