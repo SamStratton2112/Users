@@ -27,3 +27,9 @@ class User(db.Model):
     profile_pic = db.Column(db.String(500),
                     nullable=False,
                     unique=True)
+    
+    def update_info(self, first_name, last_name, profile_pic):
+        """Update information for a user """
+        self.first_name = first_name
+        self.last_name = last_name
+        self.profile_pic = profile_pic

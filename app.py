@@ -34,13 +34,30 @@ def add_user():
     """send add user post request to db and redirect to home page"""
     first_name = request.form['first_name']
     last_name = request.form['last_name']
-    profile_url = request.form['profile_url']
-    new_user = User(first_name=first_name, last_name=last_name, profile_url=profile_url)
+    profile_pic = request.form['profile_pic']
+    new_user = User(first_name=first_name, last_name=last_name, profile_pic=profile_pic)
     db.session.add(new_user)
     db.session.commit()
     return redirect('/users')
 
-@app.route('/users/<int:user_id>/details')
+@app.route('/users/edit/<int:user_id>')
+def edit_user(user_id):
+    """show edit user form"""
+    user = User.query.get_or_404(user_id)
+    return render_template('edit_user.html', user=user)
+
+@app.route('/users/new', methods=['POST'])
+def add_edited_user():
+    """send add edited user post request to db and redirect to home page"""
+    user = User.query.get_or_404(user_id)
+    user.first_name = request.form['first_name']
+    user.last_name = request.form['last_name']
+    user.profile_pic = request.form['profile_pic']
+    db.session.add(user)
+    db.session.commit()
+    return redirect('/users')
+
+@app.route('/users/details/<int:user_id>')
 def show_user_details(user_id):
     """shows user information"""
     user = User.query.get_or_404(user_id)
