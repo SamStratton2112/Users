@@ -44,7 +44,8 @@ class Post(db.Model):
     id = db.Column(db.Integer,
                     primary_key=True,
                     autoincrement=True,
-                    unique=True)
+                    unique=True,
+                    nullable=False)
     title = db.Column(db.String(50),
                     nullable=False)
     content = db.Column(db.String(300),

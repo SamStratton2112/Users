@@ -85,8 +85,8 @@ def new_post_form(user_id):
 def add_post(user_id):
     title = request.form['title']
     content = request.form['content']
-    new_post = Post(title=title, content=content)
     user_id = request.form['user_id']
+    new_post = Post(title=title, content=content, user_id=user_id)
     db.session.add(new_post)
     db.session.commit()
     user = User.query.get_or_404(user_id)
@@ -119,4 +119,4 @@ def delete_post(post_id):
 
 # My created at isn't working at all 
 # I can add new posts but they only show up on my table and no user_id is being 
-# associated with them 
+# associated with them
