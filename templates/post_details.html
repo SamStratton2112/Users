@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block page_name %}Post Details{% endblock %}
+{% block content %}
+
+<h2>Post:{{post.id}}</h2>
+<div>{{post.created_at}}</div>
+<h3>{{post.title}}</h3>
+<p>{{post.content}}</p>
+
+<button><a href="/posts/{{post.id}}/edit">Edit</a></button>
+<form action="/posts/{{post.id}}/delete" method="POST">
+    <button>Delete</button>
+</form>
+<button><a href="/users/details/{{post.post_user.id}}">Back</a></button>
+
+
+{% endblock %}

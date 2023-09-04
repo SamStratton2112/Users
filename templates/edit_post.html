@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block page_name %}Edit User{% endblock %}
+{% block content %}
+<h2>Edit Post</h2>
+<form action="/posts/{{post.id}}/edit" method="POST">    
+       <input type="text" name="title" value="{{post.title}}">
+       <input type="text" name="content" value="{{post.content}}">
+       <button>Save</button>
+       <button><a href="/users/details/{{user.id}}">Cancel</a></button>
+</form>
+
+{% endblock %}

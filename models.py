@@ -33,3 +33,23 @@ class User(db.Model):
         self.first_name = first_name
         self.last_name = last_name
         self.profile_pic = profile_pic
+
+
+class Post(db.Model):
+    __tablename__='posts'
+    def __repr__(self):
+        p= self
+        return f'<Title: {p.title}, Created at: {p.created_at}, User{p.post_user.first_name} {p.post_user.last_name}, Id:{p.id}>'
+
+    id = db.Column(db.Integer,
+                    primary_key=True,
+                    autoincrement=True,
+                    unique=True)
+    title = db.Column(db.String(50),
+                    nullable=False)
+    content = db.Column(db.String(300),
+                    nullable=False)
+    created_at = db.Column(db.DateTime)
+    user_id = db.Column(db.Integer,db.ForeignKey('users.id'))
+
+    post_user = db.relationship('User')

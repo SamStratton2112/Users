@@ -2,7 +2,7 @@
 {% block page_name %}Users{% endblock %}
 {% block content %}
 
-<h1>User Home Page</h1>
+<h2>User Home Page</h2>
 <ul>
     {% for user in users%}
     <li><a href="/users/details/{{user.id}}">{{user.first_name}}</a></li>
