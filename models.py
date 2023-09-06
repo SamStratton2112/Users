@@ -39,7 +39,7 @@ class Post(db.Model):
     __tablename__='posts'
     def __repr__(self):
         p= self
-        return f'<Title: {p.title}, Created at: {p.created_at}, User{p.post_user.first_name} {p.post_user.last_name}, Id:{p.id}>'
+        return f'<Title: {p.title}, Created at: {p.created_at}, User: {p.post_user.first_name} {p.post_user.last_name}, Id:{p.id}>'
 
     id = db.Column(db.Integer,
                     primary_key=True,
@@ -53,4 +53,37 @@ class Post(db.Model):
     created_at = db.Column(db.DateTime)
     user_id = db.Column(db.Integer,db.ForeignKey('users.id'))
 
-    post_user = db.relationship('User')
+    post_user = db.relationship('User', backref='posts')
+
+    tags_on_posts = db.relationship('Tag', secondary='post_tag', backref='posts_with_tag')
+
+class Tag(db.Model):
+    __tablename__='tags'
+    def __repr__(self):
+        t= self
+        return f'<Id:{t.id}, Name: {t.tag_name}>'
+    
+    id = db.Column(db.Integer, 
+                    primary_key=True,
+                    autoincrement=True,
+                    unique=True,
+                    nullable=False)
+    tag_name = db.Column(db.String(30),
+                    nullable=False,
+                    unique=True)
+
+class PostTag(db.Model):
+    __tablename__='post_tag'
+    def __repr__(self):
+        pt= self
+        return f'<Post ID: {pt.post_id}, Tag Id:{pt.id}>'
+    
+    post_id = db.Column(db.Integer,db.ForeignKey('posts.id'), 
+                        primary_key=True, 
+                        nullable=False)
+    tag_id = db.Column(db.Integer,db.ForeignKey('tags.id'), 
+                        primary_key=True, 
+                        nullable=False)
+
+
+    

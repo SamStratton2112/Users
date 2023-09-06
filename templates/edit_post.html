@@ -5,8 +5,15 @@
 <form action="/posts/{{post.id}}/edit" method="POST">    
        <input type="text" name="title" value="{{post.title}}">
        <input type="text" name="content" value="{{post.content}}">
+       <h4>Tags:</h4>
+       {% for tag in tags %}
+       <input id="{{tag.id}}" name="tags" value="{{tag.id}}" type="checkbox">
+       <label for="{{tag.id}}">{{tag.tag_name}}</label>
+       <br>
+       {% endfor %}
        <button>Save</button>
        <button><a href="/users/details/{{user.id}}">Cancel</a></button>
 </form>
+
 
 {% endblock %}

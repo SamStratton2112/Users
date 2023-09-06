@@ -1,4 +1,4 @@
-from models import User, Post, db
+from models import User, Post, Tag, db
 from app import app
 
 db.drop_all()
@@ -16,9 +16,19 @@ post2 = Post(title="Milo's Name", content="Milo's name is actually Small Sir.", 
 post3 = Post(title='Milo the Cat', content='Milo goes by the name of Small Sir and Milo.', user_id='3')
 post4 = Post(title="Milo's Birthday", content='Milo was born in September. He is almost 13.', user_id='3')
 
+tag1 = Tag(tag_name='cute')
+tag2 = Tag(tag_name='wild')
+tag3 = Tag(tag_name='rude')
+tag4 = Tag(tag_name='funny')
+
+
 db.session.add(Martin)
 db.session.add(Ilian)
 db.session.add(Sam)
+db.session.add(tag1)
+db.session.add(tag2)
+db.session.add(tag3)
+db.session.add(tag4)
 
 db.session.commit()
 
@@ -28,3 +38,5 @@ db.session.add(post3)
 db.session.add(post4)
 
 db.session.commit()
+
+
